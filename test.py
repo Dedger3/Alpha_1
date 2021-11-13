@@ -1,5 +1,7 @@
 import copy
 
+import numpy as np
+
 ls1 = []
 ls2 = []
 result_array = []
@@ -10,6 +12,7 @@ def tesst():
     count1, count2 = map(int, input().split())
     print("Введите размерность Второго массива через пробел:")
     count3, count4 = map(int, input().split())
+
     w_mas1 = []
     w_mas2 = []
 
@@ -57,5 +60,5 @@ def tesst():
                             b = copy.deepcopy(count_list)
                             result_array.append(b)
                             count_list.clear()
-
-    print(result_array)
+    fin = np.array(result_array)
+    print(fin)

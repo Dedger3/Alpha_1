@@ -47,14 +47,15 @@ def tesst():
         for j in range(len(w_mas2)):  # 3
             if j >= 1:
                 continue
-            for h in range(len(w_mas2[j])): #4
+            for h in range(len(w_mas2[j])):  # 4
                 sum_mas = 0
                 for k in range(len(w_mas1[i])):  # 3
                     sum_mas += w_mas1[i][k]*w_mas2[k][h]
                     if k == len(w_mas1[i])-1:
                         count_list.append(sum_mas)
-                        b = copy.deepcopy(count_list)
-                        result_array.append(b)
-                        count_list.clear()
+                        if h == len(w_mas2[j]) - 1:
+                            b = copy.deepcopy(count_list)
+                            result_array.append(b)
+                            count_list.clear()
 
     print(result_array)

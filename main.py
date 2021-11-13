@@ -89,6 +89,7 @@ def enter():
                     count_1 = random.randint(-49, 50)
                     sum_list1.append(count_1)
                     numm = 1
+                    continue
                 if numm == 1:
                     count_1 = random.randint(-49, 50)
                     sum_list1.append(count_1)
@@ -103,6 +104,7 @@ def enter():
                     count_1 = random.randint(-49, 50)
                     sum_list1.append(count_1)
                     numm = 1
+                    continue
                 if numm == 1:
                     count_1 = random.randint(-49, 50)
                     sum_list1.append(count_1)

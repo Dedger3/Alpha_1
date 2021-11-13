@@ -1,6 +1,5 @@
 import copy
 import random
-
 import numpy as np
 
 l1 = [[1,2],[3,4]]

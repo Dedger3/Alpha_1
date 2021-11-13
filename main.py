@@ -1,118 +1,122 @@
+import copy
+import random
+
 import numpy as np
-def funk():
-    lst1 = []
-    lst2 = []
-    lenth = 0
-    n = 0
-    #Enter 2-dimentional arrays
+l1 = [[1,2],["3",4]]
+l2 = [[5,"6"],[7,8]]
 
-    while True:
-        #print("Нажмите 1, чтобы ввести матрицы вручную, 2- чтобы ввести только размерность матрицы, 3- чтобы всё произошло автоматиче")
-        print("Нажмите 1, чтобы ввести матрицы вручную")
-        a = input()
-        if a == "1":
-            while True:
-                if n == 0:
-                    try:
-                        lst = list(map(float, input().split(" ")))
-                        lenth = len(lst)
-                        lst1.append(lst)
-                        n = 1
-                        continue
-                    except:
-                        break
+lis1 = [[1,2]]
+lis2 = [[3]]
+def funk(ls1, ls2):
+    print(f"Двумерный массив 1: {ls1}\nДвумерный массив 2: {ls2}")
+    try:
+        try:
+            for i in range(len(ls1)):
+                for j in range(len(ls1[i])):
+                    ls1[i][j] = int(ls1[i][j])
+        except ValueError:
+            print("Ошибка ввода Первой матрицы")
 
-                if n == 1:
-                    try:
-                        lst = list(map(float, input().split(" ")))
-                        if len(lst) != lenth:
-                            a = []
-                            print(f"Ошибка ввода: {a}")
-                            n = 0
-                            lenth = 0
-                            break
-                    except:
-                        n = 0
-                        lenth = 0
-                        break
-                lst1.append(lst)
+        try:
+            for i in range(len(ls2)):
+                for j in range(len(ls2[i])):
+                    ls2[i][j] = int(ls2[i][j])
+        except ValueError:
+            print("Ошибка ввода Второй матрицы")
+        # change from List[list] to arrays
+        ar1_strings = np.array(ls1)
+        ar2_strings = np.array(ls2)
 
-            while True:
-                if n == 0:
-                    try:
-                        lst = list(map(float, input().split(" ")))
-                        lenth = len(lst)
-                        lst2.append(lst)
-                        n = 1
-                        continue
-                    except:
-                        break
+        if len(ls1[0]) != len(ls2[0]):
+            print("Неверный размер массивов. Количество строк певрого массива должна соответствовать количеству строк другого.")
 
-                if n == 1:
-                    try:
-                        lst = list(map(float, input().split(" ")))
-                        if len(lst) != lenth:
-                            a = []
-                            print(f"Ошибка ввода: {a}")
-                            break
-                    except:
-                        break
-                lst2.append(lst)
+        result_array = []
+        for i in range(len(ar1_strings)): #6
+            for j in range(len(ar2_strings)): #12
+                for k in range(len(ar1_strings[j])): #2
+                    result_array.append(ar1_strings[i][k] * ar2_strings[j][k])
 
-            break
-#2
-        '''elif a == "2":
-            i = 0
-            print("Введите размеры первой матрицы через пробел:")
-            try:
-                num1, num2 = map(int, input().split())
-                num3, num4 = map(int, input().split())
-                if num2 == num3:
-                    try:
-                        lst1 = list(range(1,num1 + num2))
-                        lst2 = list(range(1,num3 + num4))
-                        print(lst1)
-                        print(lst2)
-                        break
-                    except:
-                        continue
-            except(ValueError):
-                print("Вы ввели неверное значение")
+        sum_list = []
+        f_array = []
+        count_ = 0
+        num = 0
+        num1 = 0
+        for i, j in enumerate(result_array):
+            if num == 0:
+                count_ += j
+                num = 1
                 continue
-            if i == 1:
-                break
-        elif a == 3:
+            if num == 1 and num1 == 0:
+                count_ += j
+                sum_list.append(count_)
+                count_ = 0
+                num = 0
+                num1 = 1
+            if num == 1 and num1 == 1:
+                count_ += j
+                sum_list.append(count_)
+                a = copy.deepcopy(sum_list)
+                f_array.append(a)
+                sum_list.clear()
+                count_ = 0
+                num = 0
+                num1 = 0
 
-            break
-        else:
-            print("Введите корректное число")'''
+        for i in range(len(f_array)):
+            print(f_array[i])
+        print()
 
-    #change from List[list] to arrays
-    ar1 = np.array(lst1)
-    b = np.transpose(ar1)
-    ar1_strings = np.vsplit(ar1, len(b[0]))
+        return f_array
+    except:
+        print("[[]]\n")
 
-    ar2 = np.array(lst2)
-    c = ar2
-    ar2 = np.transpose(ar2)
-    ar2_strings = np.vsplit(ar2, len(c[0]))
+def enter():
+    l1.clear()
+    l2.clear()
+    print("Введите размерность Первого массива через пробел:")
+    try:
+        count1, count2 = map(int, input().split())
+        print("Введите размерность Второго массива через пробел:")
+        count3, count4 = map(int, input().split())
 
+        numm = 0
+        count_1 = 0
+        sum_list1 = []
 
-    if len(ar1[0]) != len(ar2[0]):
-        print("Неверный размер")
+        for i in range(count1):
+            for j in range(count2):
+                if numm == 0:
+                    count_1 = random.randint(-49, 50)
+                    sum_list1.append(count_1)
+                    numm = 1
+                if numm == 1:
+                    count_1 = random.randint(-49, 50)
+                    sum_list1.append(count_1)
+                    a = copy.deepcopy(sum_list1)
+                    l1.append(a)
+                    sum_list1.clear()
+                    numm = 0
 
-    result_array = []
-    for i in range(len(ar1_strings)):
-        for j in range(len(ar2_strings)):
-            for k in range(len(ar1_strings[j])):
-                #print(ar1_strings[i][k]*ar2_strings[j][k])
-
-                result_array.append(sum(ar1_strings[i][k]*ar2_strings[j][k]))
-    #(len(ar1[0]), len(c[0]))
-
-    a = np.array(result_array).reshape(len(ar1),len(c[0]))
-    print(a)
-
+        for i in range(count3):
+            for j in range(count4):
+                if numm == 0:
+                    count_1 = random.randint(-49, 50)
+                    sum_list1.append(count_1)
+                    numm = 1
+                if numm == 1:
+                    count_1 = random.randint(-49, 50)
+                    sum_list1.append(count_1)
+                    a = copy.deepcopy(sum_list1)
+                    l2.append(a)
+                    sum_list1.clear()
+                    numm = 0
+        print("GO")
+    except NameError and ValueError:
+        print("Ошибка ввода размерности")
 
 if __name__ == '__main__':
-    funk()
+    funk(l1, l2)#Example
+    funk(lis1, lis2)
+
+    enter()
+    funk(l1, l2)
